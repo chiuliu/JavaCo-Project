@@ -1,6 +1,11 @@
 package business.entity;
 
+import business.feature.impl.CategoryImpl;
+import business.feature.impl.ProductImpl;
+
 import java.util.Date;
+import java.util.Scanner;
+import java.util.UUID;
 
 public class Product {
     private int productId;
@@ -111,7 +116,104 @@ public class Product {
         this.updated = updated;
     }
 
-    public void inputProduct(){
+    // InputProduct
+
+    public void inputProduct(Scanner scanner){
+        this.productId = autoIncreasing();
+        this.productName = inputProductName(scanner);
+        this.sku = autoSku();
+        this.description = description(scanner);
+        this.price = inputPrice(scanner);
+        this.quantity = quantity(scanner);
+        this.category = inputCategory(scanner);
+
+    }
+
+    public Category inputCategory(Scanner scanner) {
+        for (Category c : CategoryImpl.categoryList){
+
+
+        }
+    }
+
+    public int quantity(Scanner scanner) {
+        System.out.println("Nhập số lượng sản phẩm : ");
+        do {
+            String quantity = scanner.nextLine();
+            if (quantity.trim().isEmpty()) {
+                System.err.println("Số lượng không được để trống,vui lòng nhập lại");
+            } else {
+                if (Integer.parseInt(quantity) < 0) {
+                    System.err.println("Số lượng phải >= 0, vui lòng nhập lại");
+                } else {
+                    return Integer.parseInt(quantity);
+                }
+            }
+        } while (true);
+    }
+
+
+
+    public float inputPrice(Scanner scanner) {
+        System.out.println("Nhập giá sản phẩm : ");
+        do {
+            String price = scanner.nextLine();
+            if (price.trim().isEmpty()) {
+                System.err.println("Giá sản phẩm không được để trống, vui lòng nhập lại ");
+            } else {
+                if (Float.parseFloat(price) < 0) {
+                    System.err.println("Giá phải > 0, vui lòng nhập lại ");
+                } else {
+                    return Float.parseFloat(price);
+                }
+            }
+        } while (true);
+    }
+
+    public String description(Scanner scanner) {
+        System.out.println("Nhập mô tả sản phẩm : ");
+        return scanner.nextLine();
+    }
+
+    public String autoSku() {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString();
+    }
+
+    public String inputProductName(Scanner scanner) {
+        System.out.println("Nhập tên sản phẩm : ");
+        do {
+            String nameProduct = scanner.nextLine();
+            if (nameProduct.trim().isEmpty()) {
+                System.err.println("Không được để trống ");
+            } else {
+                boolean isExist = false;
+                for (Product p : ProductImpl.productList) {
+                    if (p.getProductName().equals(nameProduct)) {
+                        isExist = true;
+                        break;
+                    }
+                }
+                if (isExist) {
+                    System.err.println("Tên sản phẩm đã tồn tại,vui lòng nhập lại ");
+                } else {
+                    return nameProduct;
+                }
+            }
+        } while (true);
+    }
+
+    public int autoIncreasing() {
+        int max = 0;
+        for (Product p : ProductImpl.productList) {
+            if (p.getProductId() > max) {
+                max = p.getProductId();
+            }
+        }
+        return max + 1;
+    }
+
+    public void displayProduct(){
 
     }
 

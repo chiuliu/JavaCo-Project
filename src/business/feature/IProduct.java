@@ -1,4 +1,6 @@
 package business.feature;
 
-//public interface IProduct extends Product<Product, Integer> {
-//}
+import business.entity.Product;
+
+public interface IProduct extends IBase<Product, Integer> {
+}

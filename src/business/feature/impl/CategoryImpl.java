@@ -17,16 +17,29 @@ public class CategoryImpl implements ICategory {
 
     @Override
     public List<Category> findAll() {
-        return List.of();
+        return categoryList;
     }
 
     @Override
     public void addOrUpdate(Category category) {
+        int index = findIndexById(category.getCategoryId());
+        if(index >= 0){
+            categoryList.set(index, category);
+        }
+        else {
+            categoryList.add(category);
+        }
+        IOFile.writeToFile(IOFile.PATH_CATEGORY, categoryList);
 
     }
 
     @Override
     public void delete(Integer id) {
+        int index = findIndexById(id);
+        if(index >= 0){
+            boolean isExist = true;
+//            for(Product p : )
+        }
 
     }
 
