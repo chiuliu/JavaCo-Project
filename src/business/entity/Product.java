@@ -2,7 +2,9 @@ package business.entity;
 
 import business.feature.impl.CategoryImpl;
 import business.feature.impl.ProductImpl;
+import business.feature.impl.TryCatchAll;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.UUID;
@@ -130,10 +132,31 @@ public class Product {
     }
 
     public Category inputCategory(Scanner scanner) {
-        for (Category c : CategoryImpl.categoryList){
-
-
+        for (Category c : CategoryImpl.categoryList) {
+            System.out.printf("Mã danh mục : %10d | Tên danh mục : %15s",
+                    c.getCategoryId(), c.getCategoryName());
         }
+            System.out.println("Nhập mã danh mục để thêm sản phẩm : ");
+            do {
+                int choice = TryCatchAll.inputNumber(scanner);
+                int findId = findCategoryIndexById(choice);
+                if(findId >= 0){
+                    return CategoryImpl.categoryList.get(findId);
+                }
+                else {
+                    System.err.println("Không tìm thấy mã danh mục");;
+                }
+
+            }while (true);
+    }
+
+    public int findCategoryIndexById(int findId) {
+        for (int i = 0; i < CategoryImpl.categoryList.size(); i++) {
+            if(CategoryImpl.categoryList.get(i).getCategoryId() == findId) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public int quantity(Scanner scanner) {
@@ -214,7 +237,10 @@ public class Product {
     }
 
     public void displayProduct(){
-
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        System.out.printf(" Mã sản phẩm : %10d | Tên sản phẩm : %15s | Mã Code : %15s Mô tả : 15%s | Danh muc : 20s \n  ",
+                this.productId,this.productName, this.sku , this.description, this.category.getCategoryName());
+        System.out.printf("Tồn kho : %10d | Giá : %10f | Thời gian : %20s  ", this.quantity,this.price, sdf.format(this.created));
     }
 
 
