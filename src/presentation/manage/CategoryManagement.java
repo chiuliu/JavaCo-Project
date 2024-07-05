@@ -1,4 +1,4 @@
-package presentation;
+package presentation.manage;
 
 import business.entity.Category;
 import business.feature.ICategory;

@@ -4,9 +4,9 @@ import business.constants.RoleName;
 import business.entity.Users;
 import business.feature.IUserFeature;
 import business.feature.impl.UserFeatureImpl;
-import presentation.MainAdmin;
-import presentation.MainModerator;
-import presentation.MainUsers;
+import presentation.menu.MainAdmin;
+import presentation.menu.MainModerator;
+import presentation.menu.MainUsers;
 
 import java.util.Scanner;
 

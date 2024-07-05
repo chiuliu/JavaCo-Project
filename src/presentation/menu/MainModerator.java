@@ -1,4 +1,4 @@
-package presentation;
+package presentation.menu;
 
 import java.util.Scanner;
 
