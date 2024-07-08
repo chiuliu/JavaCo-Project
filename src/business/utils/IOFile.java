@@ -10,6 +10,7 @@ public class IOFile {
     public static final String PATH_PRODUCT = "src/business/data/product.txt";
     public static final String PATH_ADDRESS = "src/business/data/address.txt";
     public static final String PATH_WISHLIST = "src/business/data/wishlist.txt";
+    public static final String PATH_SHOPPINGCART = "src/business/data/shopping-cart.txt";
 
 
     public static <T> void writeToFile(String path, List<T> list) {

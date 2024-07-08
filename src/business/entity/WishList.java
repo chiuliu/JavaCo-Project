@@ -59,6 +59,6 @@ public class WishList {
     }
     //Hiển thị danh sách yêu thích
     public void displayWishList() {
-        System.out.printf("|ID: %-10d| Tên sản phẩm:%30s| \n",this.wishListId,this.productId.getProductName());
+        System.out.printf("|ID: %-10d| Tên sản phẩm:%-30s| \n",this.wishListId,this.productId.getProductName());
     }
 }

@@ -240,7 +240,7 @@ public class Product {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         System.out.printf(" Mã sản phẩm : %10d | Tên sản phẩm : %15s | Mã Code : %15s Mô tả : 15%s | Danh muc : 20s \n  ",
                 this.productId,this.productName, this.sku , this.description, this.category.getCategoryName());
-        System.out.printf("Tồn kho : %10d | Giá : %10f | Thời gian : %20s  ", this.quantity,this.price, sdf.format(this.created));
+        System.out.printf("Tồn kho : %10d | Giá : %10f | Thời gian : %20s \n ", this.quantity,this.price, sdf.format(this.created));
     }
 
 

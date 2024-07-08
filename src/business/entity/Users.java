@@ -19,7 +19,7 @@ public class Users implements Serializable {
     private String confirmPassword;
     private String avatar;
     private String phone;
-    private String adress;
+    private String address;
     private Date created;
     private Date updated;
     private byte delete;
@@ -28,7 +28,7 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(int id, String userName, String email, String fullName, boolean status, String password, String confirmPassword, String avatar, String phone, String adress, Date created, Date updated, byte delete, RoleName roleName) {
+    public Users(int id, String userName, String email, String fullName, boolean status, String password, String confirmPassword, String avatar, String phone, String address, Date created, Date updated, byte delete, RoleName roleName) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -38,7 +38,7 @@ public class Users implements Serializable {
         this.confirmPassword = confirmPassword;
         this.avatar = avatar;
         this.phone = phone;
-        this.adress = adress;
+        this.address = address;
         this.created = created;
         this.updated = updated;
         this.delete = delete;
@@ -117,12 +117,12 @@ public class Users implements Serializable {
         this.phone = phone;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Date getCreated() {
@@ -166,7 +166,7 @@ public class Users implements Serializable {
         this.password = inputPassWord(scanner);
         this.confirmPassword = inputConfirmPassWord(scanner);
         this.phone = inputPhone(scanner);
-        this.adress = inputAddress(scanner);
+        this.address = inputAddress(scanner);
         this.created = new Date();
         this.delete = 1;
 
@@ -175,7 +175,7 @@ public class Users implements Serializable {
 
     }
 
-    private String inputAddress(Scanner scanner) {
+    public String inputAddress(Scanner scanner) {
         System.out.println("Nhập địa chỉ:");
         do {
             String adress = scanner.nextLine();
@@ -225,7 +225,7 @@ public class Users implements Serializable {
         } while (true);
     }
 
-    private String inputPassWord(Scanner scanner) {
+    public String inputPassWord(Scanner scanner) {
         System.out.println("Nhập mật khẩu:");
         do {
             String password = scanner.nextLine().trim();
@@ -240,12 +240,12 @@ public class Users implements Serializable {
 
     }
 
-    private String inputFullName(Scanner scanner) {
+    public String inputFullName(Scanner scanner) {
         System.out.println("Nhập họ và tên : ");
         return scanner.nextLine();
     }
 
-    private String inputEmail(Scanner scanner) {
+    public String inputEmail(Scanner scanner) {
         String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         System.out.println("Mời bạn nhập email:");
         while (true) {
@@ -311,11 +311,12 @@ public class Users implements Serializable {
 
     public void displayUser(){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        System.out.printf(" Tên đăng nhập : %20s | Email : %40s | Tên : %20s |Trạng thái : %10s \n ",
+        System.out.printf(" Tên đăng nhập : %-20s | Email : %-40s | Tên : %-20s |Trạng thái : %-10s \n ",
                 this.userName, this. email, this.fullName, this.status? "Hoạt động " : "Khoá");
-        System.out.printf("| Số điện thoạt : %13s| Địa chỉ : %30s | Date : %25s",
-                this.phone, this. adress, this.created !=null ? sdf.format(this.created): " ");
+        System.out.printf("| Số điện thoạt : %-13s| Địa chỉ : %-30s | Date : %-25s \n",
+                this.phone, this.address, this.created !=null ? sdf.format(this.created): " ");
     }
+
 }
 
 
