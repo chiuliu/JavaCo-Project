@@ -49,6 +49,10 @@ public class Category implements Serializable {
         return status;
     }
 
+    public boolean getStatus(){
+        return status;
+    }
+
     public void setStatus(boolean status) {
         this.status = status;
     }

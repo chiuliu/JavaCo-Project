@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class MainAdmin {
 
-    public void menu(Scanner scanner){
+    public void menu(Scanner scanner) {
         boolean isExit = false;
         do {
             System.out.println("========================= Main Admin =========================");
@@ -33,34 +33,61 @@ public class MainAdmin {
                 case 3:
                     findUserbyName(scanner);
                     break;
-                case 4:break;
-                case 5:break;
-                case 6:break;
+                case 4:
+                    showRole();
+                    break;
+                case 5:
+                    showUserList();
+                    break;
+                case 6:
+                    break;
                 default:
-                    System.err.println(" Vui lòng nhập từ 1 - 7.");
+                    System.err.println(" Vui lòng nhập từ 1 - 6.");
             }
 
-        }while(!isExit);
+        } while (!isExit);
 
     }
 
-    private void findUserbyName(Scanner scanner) {
+    private void showRole() {
+        System.out.println("======================== Role Admin ==========================");
+        System.out.println("======================== Role User ==========================");
+        System.out.println("======================== Role Moderator ==========================");
+    }
+
+    private void showUserList() {
         if (UserFeatureImpl.users.isEmpty()) {
-            System.err.println("Chưa có tài khoản người dùng");
+            System.err.println("Danh sách người dùng trống");
+            return;
+        }
+        for (Users u : UserFeatureImpl.users) {
+            u.displayUser();
+        }
+
+//        private void showRole() {
+//            System.out.println("======================== Role Admin ==========================");
+//            System.out.println("======================== Role User ==========================");
+//            System.out.println("======================== Role Moderator ==========================");
+//        }
+    }
+
+    private void findUserbyName(Scanner scanner) {
+
+        if (UserFeatureImpl.users.isEmpty()) {
+            System.err.println("Danh mục không tồn tại người dùng");
             return;
         }
         System.out.println("Nhập tên người dùng:");
         String userName = scanner.nextLine();
-        boolean isfind = false;
+        boolean found = false;
         for (Users u : UserFeatureImpl.users) {
             if (u.getFullName().toLowerCase().contains(userName.toLowerCase())) {
-//                u.displayUser();
-//                found = true;
+                u.displayUser();
+                found = true;
             }
         }
-        if (!isfind) {
-            System.out.println("Không tìm thấy người dùng " + userName);
+        if (!found) {
+            System.err.println("Không tìm thấy người dùng " + userName);
         }
-
     }
 }

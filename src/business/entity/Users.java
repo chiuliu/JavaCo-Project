@@ -4,6 +4,7 @@ import business.constants.RoleName;
 import business.feature.impl.UserFeatureImpl;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -240,11 +241,13 @@ public class Users implements Serializable {
     }
 
     private String inputFullName(Scanner scanner) {
+        System.out.println("Nhập họ và tên : ");
+        return scanner.nextLine();
     }
 
     private String inputEmail(Scanner scanner) {
         String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        System.out.println("Nhập email:");
+        System.out.println("Mời bạn nhập email:");
         while (true) {
             String email = scanner.nextLine().trim();
             if (Pattern.matches(regex, email)) {
@@ -304,6 +307,14 @@ public class Users implements Serializable {
             }
         }
         return max + 1;
+    }
+
+    public void displayUser(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        System.out.printf(" Tên đăng nhập : %20s | Email : %40s | Tên : %20s |Trạng thái : %10s \n ",
+                this.userName, this. email, this.fullName, this.status? "Hoạt động " : "Khoá");
+        System.out.printf("| Số điện thoạt : %13s| Địa chỉ : %30s | Date : %25s",
+                this.phone, this. adress, this.created !=null ? sdf.format(this.created): " ");
     }
 }
 

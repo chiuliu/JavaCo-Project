@@ -11,7 +11,7 @@ public class ProductImpl implements IProduct {
     public static  List<Product> productList = new ArrayList<Product>();
     @Override
     public List<Product> findAll() {
-        return(productList);
+        return productList;
     }
 
     @Override
@@ -23,6 +23,7 @@ public class ProductImpl implements IProduct {
             productList.add(product);
         }
         IOFile.writeToFile(IOFile.PATH_PRODUCT,productList);
+
 
     }
 
@@ -36,6 +37,7 @@ public class ProductImpl implements IProduct {
             System.err.println("Mã sản phẩm không tồn tại");
         }
         IOFile.writeToFile(IOFile.PATH_PRODUCT,productList);
+
     }
 
     @Override
@@ -48,5 +50,5 @@ public class ProductImpl implements IProduct {
         return -1;
     }
 
-    }
+}
 

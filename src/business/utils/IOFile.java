@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IOFile {
-    public static final String PATH_USER = "src/project/ra/data/users.txt";
-    public static final String PATH_CATEGORY = "src/project/ra/data/category.txt";
-    public static final String PATH_PRODUCT = "src/project/ra/data/product.txt";
+    public static final String PATH_USER = "src/business/data/user.txt";
+    public static final String PATH_CATEGORY = "src/business/data/category.txt";
+    public static final String PATH_PRODUCT = "src/business/data/product.txt";
+    public static final String PATH_ADDRESS = "src/business/data/address.txt";
+    public static final String PATH_WISHLIST = "src/business/data/wishlist.txt";
 
 
     public static <T> void writeToFile(String path, List<T> list) {

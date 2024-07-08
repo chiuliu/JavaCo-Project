@@ -1,6 +1,7 @@
 package business.feature.impl;
 
 import business.entity.Category;
+import business.entity.Product;
 import business.feature.ICategory;
 import business.utils.IOFile;
 
@@ -23,10 +24,9 @@ public class CategoryImpl implements ICategory {
     @Override
     public void addOrUpdate(Category category) {
         int index = findIndexById(category.getCategoryId());
-        if(index >= 0){
+        if (index >= 0) {
             categoryList.set(index, category);
-        }
-        else {
+        } else {
             categoryList.add(category);
         }
         IOFile.writeToFile(IOFile.PATH_CATEGORY, categoryList);
@@ -36,15 +36,40 @@ public class CategoryImpl implements ICategory {
     @Override
     public void delete(Integer id) {
         int index = findIndexById(id);
-        if(index >= 0){
+        if (index >= 0) {
             boolean isExist = true;
-//            for(Product p : )
-        }
+            for (Product p : ProductImpl.productList) {
+                if (p.getCategory().getCategoryId() == id) {
+                    isExist = false;
+                    break;
+                }
+            }
+            if (isExist) {
+                categoryList.remove(index);
+                System.out.println("Xóa danh mục thành công");
+            } else {
+                Category category = categoryList.get(index);
+                category.setStatus(!category.getStatus());
+                addOrUpdate(category);
+                System.err.println("Danh mục có chứa sản phẩm, k thể xoá ");
+            }
 
+
+        } else {
+            System.err.println("Không tìm thấy mã danh mục trên");
+        }
     }
+
 
     @Override
     public int findIndexById(Integer id) {
-        return 0;
+
+        for (int i = 0; i < categoryList.size(); i++) {
+            if (categoryList.get(i).getCategoryId() == id) {
+                return i;
+            }
+        }
+        return -1;
+
     }
 }
